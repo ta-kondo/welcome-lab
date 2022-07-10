@@ -1,0 +1,57 @@
+/**
+
+**/
+
+title, body {
+  font-family: "IBM Plex Mono", monospace, "M PLUS Rounded 1c", "IBM Plex Sans JP";
+  font-size: larger;
+}
+code {
+  font-family: "IBM Plex Mono", monospace, "M PLUS Rounded 1c", "IBM Plex Sans JP";
+}
+
+/*
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@100;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="md.css" type="text/css">
+
+*/
+
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+  font-size: 14.0px;
+	color: #d3714b;
+	font-size: inherit;
+}
+
+a {
+	color: #3467d6;
+	text-decoration: underline;
+}
+a:hover,
+a:active {
+	text-decoration: none;
+}
+
+img {
+  max-width: 60%;
+  max-height: 25%;
+  margin: 1%;
+  padding: 3%;
+  background-color: aliceblue;
+  border: 0.5px;
+  border-style: solid;
+  border-color: #94cdff;
+}
+/*
+p {
+  text-indent: 1em;
+}
+
+h2, h3 {
+  margin-top: 1em;
+}
+*/
