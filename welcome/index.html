@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>index.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@100;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="file:///c%3A/_works/_doc/repo/work-documents-innovation-lab/md.css" type="text/css">
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="%E3%82%A4%E3%83%8E%E3%83%99%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%83%A9%E3%83%9C%E5%88%A9%E7%94%A8%E3%82%AC%E3%82%A4%E3%83%89">イノベーションラボ利用ガイド</h1>
+<h2 id="%E3%81%94%E5%8F%82%E5%8A%A0%E3%81%82%E3%82%8A%E3%81%8C%E3%81%A8%E3%81%86%E3%81%94%E3%81%96%E3%81%84%E3%81%BE%E3%81%99"><strong>ご参加ありがとうございます！</strong></h2>
+<hr>
+<p>ここではイノベーションラボのコミュニケーションツールとして使用する <code>Slack</code> に関して、<br>
+(1)初期設定の案内と(2)利用上の注意点、(3)実際に使ってみる といったところをガイドしていきます。</p>
+<h2 id="%E5%88%A9%E7%94%A8%E3%82%AC%E3%82%A4%E3%83%89%E7%9B%AE%E6%AC%A1">利用ガイド目次</h2>
+<hr>
+<ol>
+<li>
+<p><a href="#%E7%94%BB%E9%9D%A2%E8%AA%AC%E6%98%8E">画面説明</a></p>
+</li>
+<li>
+<p><a href="#%E5%88%9D%E6%9C%9F%E8%A8%AD%E5%AE%9A%E6%A1%88%E5%86%85">初期設定案内</a></p>
+<ul>
+<li>概要</li>
+<li>プロフィール設定</li>
+<li>環境設定</li>
+<li>アプリ導入</li>
+</ul>
+</li>
+<li>
+<p><a href="#%E5%88%A9%E7%94%A8%E6%99%82%E3%81%AE%E6%B3%A8%E6%84%8F%E7%82%B9">利用時の注意点</a></p>
+<ul>
+<li>セキュリティ関係の注意点
+<ul>
+<li>ファイルのアップロード禁止</li>
+<li>客先端末からのアクセス</li>
+</ul>
+</li>
+<li>その他利用上の注意点</li>
+</ul>
+</li>
+<li>
+<p><a href="#%E3%83%81%E3%83%A3%E3%83%B3%E3%83%8D%E3%83%AB%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">チャンネルについて</a></p>
+</li>
+<li>
+<p><a href="#%E5%88%9D%E3%82%81%E3%81%A6%E3%81%AE%E6%8A%95%E7%A8%BF">初めての投稿</a></p>
+<ul>
+<li>自己紹介</li>
+</ul>
+</li>
+<li>
+<p><a href="#%E6%9C%80%E5%BE%8C%E3%81%AB">最後に</a></p>
+</li>
+</ol>
+<div style="page-break-before:always"></div>
+<h2 id="%E7%94%BB%E9%9D%A2%E8%AA%AC%E6%98%8E">画面説明</h2>
+<hr>
+<p>SlackのWeb画面は1ページ構成で、左メニューのチャンネルリストと右のメイン画面に分かれています。</p>
+<p>メイン画面には選択中のチャンネル内のメンバーのメッセージが時系列表示され、<br>最右部にはメッセージへの返信をスレッド形式で表示させておくことができます。</p>
+<p>自分でメッセージを送る場合は、メイン画面下部にあるメッセージフィールドを使います。<br><code>Ctrl + Enter</code> は送信ボタンとして機能しますので、入力中はお気を付けを。</p>
+<p><img src="img/01-01_screen.png" alt="見なくてもいい画面の説明"></p>
+<div style="page-break-before:always"></div>
+<h2 id="%E5%88%9D%E6%9C%9F%E8%A8%AD%E5%AE%9A%E6%A1%88%E5%86%85">初期設定案内</h2>
+<hr>
+<ul>
+<li>
+<h3 id="%E6%A6%82%E8%A6%81">概要</h3>
+<p>まずはプロフィールの設定をお願いします。<br>
+これがInnovation Labワークスペースでの唯一の必須設定としています。</p>
+<p>その他の設定は任意です。<br>
+見映えの変更を少し紹介しておきます。</p>
+</li>
+<li>
+<h3 id="%E3%83%97%E3%83%AD%E3%83%95%E3%82%A3%E3%83%BC%E3%83%AB%E8%A8%AD%E5%AE%9A">プロフィール設定</h3>
+<ul>
+<li>
+<h4 id="%E3%83%97%E3%83%AD%E3%83%95%E3%82%A3%E3%83%BC%E3%83%AB%E7%B7%A8%E9%9B%86%E3%81%AE%E9%96%8B%E3%81%8D%E6%96%B9">プロフィール編集の開き方</h4>
+<p><img src="img/02-01_toProfile.gif" alt="プロフィール開き方"></p>
+</li>
+<li>
+<h4 id="%E3%83%97%E3%83%AD%E3%83%95%E3%82%A3%E3%83%BC%E3%83%AB%E3%81%AE%E7%B7%A8%E9%9B%86%E5%86%85%E5%AE%B9">プロフィールの編集内容</h4>
+<p><code>氏名</code>と<code>表示名</code>を変更し、<code>役職・担当</code>欄には所属部署を入れましょう。</p>
+<p>対面の少ないラボ活動で、会話はしたけどSlackで見つけられない...というのを減らしたいのが目的となっています。</p>
+<ul>
+<li>
+<p>氏名</p>
+<ul>
+<li><strong>実名</strong> でお願いします。
+<ul>
+<li>最初はSlackアカウント作成時に入力した氏名か、メールアドレスのローカルパート(@の左側)となっています。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>表示名</p>
+<ul>
+<li>何でもOKです。
+<ul>
+<li>入力内容は、投稿者やメンション先、ユーザーリスト上の表示に使用されます。</li>
+<li>空欄のままの場合は氏名が使われます。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>役職・担当</p>
+<ul>
+<li>所属部署を記載してください。略称で十分です。</li>
+</ul>
+</li>
+</ul>
+<p><img src="img/02-02_editProfile.png" alt="プロフィール"></p>
+</li>
+<li>
+<h4 id="%E3%83%97%E3%83%AD%E3%83%95%E3%82%A3%E3%83%BC%E3%83%AB%E5%86%99%E7%9C%9F">プロフィール写真</h4>
+<p>好きな画像でのアピールをお願いします。<br>
+未設定のデフォルトばかりだと、絵面が盛り上がらないのです。</p>
+<p>ペット、インテリア小物、釣果、お子さん、アニメなんでもどうぞ。<br>
+公序良俗だけは遵守願います(__)</p>
+<p><img src="img/02-03_notExciting.png" alt="絵面が盛り上がっていない様子"><br>
+↑デフォルトばかりで絵面に盛り上がりが欠けている様</p>
+</li>
+</ul>
+</li>
+<li>
+<h3 id="%E7%92%B0%E5%A2%83%E8%A8%AD%E5%AE%9A">環境設定</h3>
+<p>その他の設定は <strong>任意</strong> です。<br>
+プロフィールの近くから設定画面を開くことができます。</p>
+<p><img src="img/03-01_startSettings.png" alt="環境設定へのリンク"><br>
+↑環境設定リンク</p>
+<p>通知の頻度や時間帯、メッセージの表示形式、キーバインドなどをカスタマイズ可能となっています。</p>
+<p><a href="https://slack.com/intl/ja-jp/help/categories/360000047906">Slackの公式ヘルプ: プロフィールと環境設定</a> が充実していますので、一通り目を通しておくと良いかもしれません。</p>
+<ul>
+<li>
+<h4 id="%E8%A4%87%E6%95%B0%E3%81%AEslack%E3%83%AF%E3%83%BC%E3%82%AF%E3%82%B9%E3%83%9A%E3%83%BC%E3%82%B9%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E3%81%84%E3%82%8B%E5%A0%B4%E5%90%88">複数のSlackワークスペースを使っている場合</h4>
+<p>イノベーションラボ以外にも部課内や案件でSlackを利用していて、<br>区別がつかなくなる懸念がある場合、ワークスペースが識別できる<code>テーマ設定</code>を行うのが有用です。</p>
+<p><img src="img/03-02_selectTheme.png" alt="環境設定"><br>
+↑見間違えない様に変更しましょう</p>
+</li>
+</ul>
+</li>
+</ul>
+<div style="page-break-before:always"></div>
+<ul>
+<li>
+<h3 id="%E3%82%A2%E3%83%97%E3%83%AA%E5%B0%8E%E5%85%A5">アプリ導入</h3>
+<p>SlackにはWeb/デスクトップ/モバイルのアプリがあり、<br>今お読みのガイドはブラウザから見られるWebアプリをベースに案内しています。</p>
+<p>デスクトップ用、モバイル用アプリはSlack専用に作成されているだけの良さがあるため、是非導入を検討してみてください！<br>
+インストール方法は外部サイトが詳しいのでリンク先から！</p>
+<ul>
+<li>
+<p><a href="https://ascii.jp/elem/000/004/010/4010866/">Slackをモバイルアプリやデスクトップアプリから利用する</a></p>
+<ul>
+<li>基本はこのサイトで。</li>
+</ul>
+</li>
+<li>
+<p><a href="https://businesschatmaster.com/slack/sp_initial_app_slack">【iOS/Android版】Slackをスマホ(&amp;iPad)アプリで初回サインインする一連の流れ</a></p>
+<ul>
+<li>モバイルからのサインインはこっちにも。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="%E5%88%A9%E7%94%A8%E6%99%82%E3%81%AE%E6%B3%A8%E6%84%8F%E7%82%B9">利用時の注意点</h2>
+<hr>
+<ul>
+<li>
+<h3 id="%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3%E9%96%A2%E4%BF%82%E3%81%AE%E6%B3%A8%E6%84%8F%E7%82%B9">セキュリティ関係の注意点</h3>
+<p>セキュリティ観点からのお願い事項です。<br>
+Slackフリープランでの運用上、システムでの制限に限界がありますので各自での遵守をお願いしています。</p>
+<ul>
+<li>
+<p>ファイルのアップロード禁止</p>
+<p>画像以外のファイルアップロードは原則禁止となります...。</p>
+<p>メンバー間では、先にShainview文書管理へファイルを格納し、URLを連携する形で共有をお願いします。</p>
+</li>
+<li>
+<p>客先からのアクセス</p>
+<p>客先環境からは、顧客の許可の上でアクセスをお願いします&gt;&lt;。</p>
+</li>
+</ul>
+<p><img src="img/04-01_routemap.png" alt="アクセス経路"></p>
+</li>
+<li>
+<h3 id="%E3%81%9D%E3%81%AE%E4%BB%96%E5%88%A9%E7%94%A8%E4%B8%8A%E3%81%AE%E6%B3%A8%E6%84%8F%E7%82%B9%E3%81%8A%E9%A1%98%E3%81%84">その他利用上の注意点（お願い）</h3>
+<ul>
+<li>
+<p>プライベートチャンネル</p>
+<p>イノベーションラボは、オープンな場として開設していますので、作成するチャンネルはパブリックでお願いします！</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="%E3%83%81%E3%83%A3%E3%83%B3%E3%83%8D%E3%83%AB%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">チャンネルについて</h2>
+<hr>
+<ul>
+<li>
+<h4 id="%E8%88%88%E5%91%B3%E3%81%AE%E3%81%82%E3%82%8B%E3%83%81%E3%83%A3%E3%83%B3%E3%83%8D%E3%83%AB%E3%81%B8%E3%81%94%E5%8F%82%E5%8A%A0%E3%81%8A%E9%A1%98%E3%81%84%E3%81%97%E3%81%BE%E3%81%99">興味のあるチャンネルへご参加お願いします！</h4>
+<p>参加方法は <a href="https://slack.com/intl/ja-jp/help/articles/205239967-%E3%83%81%E3%83%A3%E3%83%B3%E3%83%8D%E3%83%AB%E3%81%AB%E5%8F%82%E5%8A%A0%E3%81%99%E3%82%8B">公式ヘルプ: チャンネルに参加する</a> をご参考までに。</p>
+<ul>
+<li>
+<p>特にない...、アレ欲しい！ といった場合、是非チャンネルを自分で作成しましょう。</p>
+</li>
+<li>
+<p>チャンネルへの参加／退出は自由です。</p>
+<p>少人数チャンネルへの参加時には既存メンバーにメッセージが通知されますが、退出時は特には通知が出ません。<br>
+参加／退出に気を使う必要はないです。</p>
+</li>
+</ul>
+</li>
+<li>
+<h4 id="%E3%83%81%E3%83%A3%E3%83%B3%E3%83%8D%E3%83%AB%E3%81%AE%E5%91%BD%E5%90%8D%E8%A6%8F%E5%89%87">チャンネルの命名規則</h4>
+<p>チャンネルは自由に作成できますが、その際は以下の規則で命名をお願いします。</p>
+<pre class="hljs"><code><div>(プレフィックス)-(チャンネル分類)-(小分類)
+
+// 例
+  z-旅行先
+  z-旅行先-海外
+  z-おススメ-旅行先
+  tech-cloud-azure
+</div></code></pre>
+<ul>
+<li>
+<p>プレフィックス？？</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>all</td>
+<td>メンバー全員参加の初期チャンネルと情報共有の場</td>
+</tr>
+<tr>
+<td>tech</td>
+<td>最新情報共有や質問を行う技術コミュニティ</td>
+</tr>
+<tr>
+<td>tmp</td>
+<td>期限を決めて活動する暫定チャンネル。消し時を明示してね！</td>
+</tr>
+<tr>
+<td>wg</td>
+<td>テーマや目的をもって立ち上ったワーキングチーム</td>
+</tr>
+<tr>
+<td>z</td>
+<td>雑談チャンネル。なんでもいいよ！</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>チャンネル分類は自由にセンス良く付けてください。</p>
+</li>
+<li>
+<p>小分類はなくとも構いません。</p>
+</li>
+<li>
+<p>(注意)</p>
+<ul>
+<li>長期間投稿のないチャンネルはアーカイブする予定です。
+期間などの詳細は未定です。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<h4 id="%E5%88%9D%E6%9C%9F%E3%83%81%E3%83%A3%E3%83%B3%E3%83%8D%E3%83%AB%E3%82%92%E7%B4%B9%E4%BB%8B%E3%81%97%E3%81%A6%E3%81%8A%E3%81%8D%E3%81%BE%E3%81%99">初期チャンネルを紹介しておきます。</h4>
+<ul>
+<li>
+<p>初めから参加しているチャンネル</p>
+<ul>
+<li>
+<p>all_アナウンス</p>
+<p>全体への通知用です。
+ワークスペース参加者全員が必ず参加しています。</p>
+</li>
+<li>
+<p>all_講座-udemy</p>
+<p>Udemyの受講感想や、講座紹介をここで投稿してください。</p>
+</li>
+<li>
+<p>all_自己紹介</p>
+<p>そもそも知らない人ばかりでコミュニケーションが活発にできるわけがありません（自分はそう）。<br>
+せめて自己紹介でお互いを知りましょう！</p>
+</li>
+<li>
+<p>z-雑談-random</p>
+<p>どんな内容でも投稿OKです。</p>
+</li>
+</ul>
+</li>
+<li>
+<p>その他の最初に用意しているチャンネル</p>
+<p>各チャンネルに説明を記載しているのでご参考まで！</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="%E5%88%9D%E3%82%81%E3%81%A6%E3%81%AE%E6%8A%95%E7%A8%BF">初めての投稿</h2>
+<hr>
+<ul>
+<li>
+<h3 id="%E8%87%AA%E5%B7%B1%E7%B4%B9%E4%BB%8B">自己紹介</h3>
+<p>では初投稿として、自己紹介をしてみましょう。</p>
+<ol>
+<li>
+<p>まずフォーマット</p>
+<p>フォーマットを守る必要はないです。<br>
+ラボでやってみたいこと、はぜひ知りたいです！</p>
+<pre class="hljs"><code><div><span class="hljs-emphasis">*名前*</span>
+  ○○ ○○
+
+<span class="hljs-emphasis">*所属*</span>
+  ○○○○部
+
+<span class="hljs-emphasis">*興味のある分野*</span>
+  (とにかく興味のあることを)
+
+<span class="hljs-emphasis">*ラボでやってみたいこと*</span>
+  (思いつきでOK)
+
+<span class="hljs-emphasis">*ひと言！*</span>
+  (自由にアピールお願いします)
+
+<span class="hljs-emphasis">*その他何でもどうぞ*</span>
+  (例文に例を並べときます)
+</div></code></pre>
+<h3 id="%E4%BE%8B">例</h3>
+<hr>
+<h5 id="%E5%90%8D%E5%89%8D"><strong>名前</strong></h5>
+<pre><code>デジソリ 太郎
+</code></pre>
+<h5 id="%E6%89%80%E5%B1%9E"><strong>所属</strong></h5>
+<pre><code>デジタルソリューション部
+</code></pre>
+<h5 id="%E8%88%88%E5%91%B3%E3%81%AE%E3%81%82%E3%82%8B%E5%88%86%E9%87%8E"><strong>興味のある分野</strong></h5>
+<pre><code>例えば...
+・AI
+・Business Inteligence
+・CX
+・Cyber Security
+・Cloud
+・Data Integration
+・Design Thinking
+・IoT
+・横文字わからん
+・もっと別の粒度でOK(言語やFWとか？)
+</code></pre>
+<h5 id="%E3%83%A9%E3%83%9C%E3%81%A7%E3%82%84%E3%81%A3%E3%81%A6%E3%81%BF%E3%81%9F%E3%81%84%E3%81%93%E3%81%A8"><strong>ラボでやってみたいこと</strong></h5>
+<pre><code>例えば...
+・質問掲示板には質問しづらいのでここで皆の知恵を借た
+・情報発信サイトに二の足を踏んでるのでアウトプット練習の場としたい
+・DXとか言ってるんなんなの教えて
+・一人じゃ捗らないので、AIの学習してるんなら混ざりたい
+・ラボでなにやるのか見てみたい
+・↑もっとポジティブだととてもうれしい
+</code></pre>
+<h5 id="%E3%81%B2%E3%81%A8%E8%A8%80"><strong>ひと言！</strong></h5>
+<pre><code>ここは自由に...
+</code></pre>
+<h5 id="%E3%81%9D%E3%81%AE%E4%BB%96%E4%BD%95%E3%81%A7%E3%82%82%E3%81%A9%E3%81%86%E3%81%9E"><strong>その他何でもどうぞ</strong></h5>
+<pre><code>例えば...
+・保有資格
+・座右の銘
+・得意なこと
+・おススメ書籍
+・Youtubeコレ見とけ
+・講座なんでも
+・このTED知っとう？
+・サイトをご紹介
+</code></pre>
+</li>
+<li>
+<p>投稿先チャンネル</p>
+<p>自己紹介用のチャンネル <code>all_自己紹介</code> を開きます。</p>
+<p><img src="img/06-01_all_jiko.png" alt="all_自己紹介"></p>
+</li>
+<li>
+<p>メッセージフィールドで編集</p>
+<p>フォーマットをメッセージフィールドへ貼り付けて、内容を編集しましょう。<br>
+もちろん、自前のエディタで編集 -&gt; メッセージフィールドへ、でもいいです。</p>
+<p>フォーマットには <code>Markdown</code> が含まれるので、貼付け後に <code>Ctrl + Shift + F</code> で <code>*名前*</code> が <strong>名前</strong>(太字) になります。</p>
+<p>メッセージフィールド上部には、テキスト装飾用のボタンがあるので
+こちらも有効活用しましょう。</p>
+</li>
+<li>
+<p>投稿ボタンで投稿</p>
+<p>右下の投稿ボタン、または <code>Shift + Enter</code> で内容が投稿できます。</p>
+<p><img src="img/06-02_shiftEnter.png" alt="投稿ボタン"></p>
+</li>
+<li>
+<p>投稿できました</p>
+<p>以上、メッセージフィールドからチャンネルへメッセージを投稿する方法を
+自己紹介を使って案内しました。</p>
+<p><img src="img/06-03_complete.png" alt="投稿おわり"></p>
+</li>
+</ol>
+</li>
+</ul>
+<h2 id="%E6%9C%80%E5%BE%8C%E3%81%AB">最後に</h2>
+<hr>
+<ul>
+<li>
+<p>ガイド内容</p>
+<p>イノベーションラボ参加時に使用するツールである <code>Slack</code> で、<br>ラボとして必要な設定、使用の際の注意事項、投稿の方法のガイドでした。</p>
+<p><code>Slack</code>を使ったことがある人には慣れた内容でしたでしょうが、<strong>注意事項だけは気に留めておいて</strong>ください。<br>
+初めてという人も、グループチャット主体のLINEのようなもの、という理解でいいかと思います。</p>
+<ul>
+<li><a href="https://appllio.com/basic-knowledge-of-slack">Slackとは？ LINEユーザーなら3分で理解できる基礎知識</a></li>
+</ul>
+</li>
+<li>
+<p>このあと</p>
+<p>まだ、そもそもイノラボって何するの？な状態だと思います。</p>
+<p>運営として期待するラボの盛り上がりは、<code>tech</code>チャンネルで技術記事紹介やメンバーのコレやってみた が投稿され、<br>業務で困ったときの質問に回答がバシバシついたり、<code>wg</code>チャンネルにはワーキングが乱立してて、Udemyの受講報告も沢山...<br>
+といった感じです。</p>
+<p>そのようにSlack上でのコミュニケーションが促進されるよう、<br>イノベーションラボ運営は投稿しやすい雰囲気作りを目指していきます。</p>
+<p>ラボの参加メンバーには、<code>Udemyの受講報告</code>に加えて、各チャンネルに合うと思った<code>技術記事の投稿</code>や<br>業務で出た<code>疑問の相談</code>、<code>得た知識のおすそ分け</code>を期待しています。</p>
+<h3 id="%E8%B3%9B%E5%90%8C%E3%81%84%E3%81%9F%E3%81%A0%E3%81%91%E3%82%8C%E3%81%B0%E5%B9%B8%E3%81%84%E3%81%A7%E3%81%99br%E3%82%88%E3%82%8D%E3%81%97%E3%81%8F%E3%81%8A%E9%A1%98%E3%81%84%E3%81%97%E3%81%BE%E3%81%99">賛同いただければ幸いです。<br>よろしくお願いします！</h3>
+</li>
+</ul>
+<h2 id="%E4%BB%A5%E4%B8%8A">以上</h2>
+<hr>
+<ul>
+<li>2022/07/10
+<ul>
+<li>新規作成</li>
+</ul>
+</li>
+</ul>
+
+</body>
+</html>
