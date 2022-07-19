@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>sub.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@100;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/md.css" type="text/css">
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="%E3%82%A4%E3%83%8E%E3%83%99%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%83%A9%E3%83%9C%E5%88%A9%E7%94%A8%E3%82%AC%E3%82%A4%E3%83%89-%E8%A3%9C%E8%B6%B3%E6%83%85%E5%A0%B1">イノベーションラボ利用ガイド: 補足情報</h1>
+<h2 id="%E3%81%93%E3%82%8C%E3%81%AF%E4%BD%95">これは何</h2>
+<hr>
+<p>ガイド本編の記載から漏れた補足的情報を纏めています。<br>
+読んでもいいし、読まなくてもいい。</p>
+<h2 id="%E8%A8%98%E8%BC%89%E5%86%85%E5%AE%B9">記載内容</h2>
+<hr>
+<ul>
+<li>
+<p><a href="#%E3%82%A4%E3%83%8E%E3%83%99%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%83%A9%E3%83%9C%E3%81%AEslack%E3%83%AF%E3%83%BC%E3%82%AF%E3%82%B9%E3%83%9A%E3%83%BC%E3%82%B9%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">イノベーションラボのSlackワークスペースについて</a></p>
+</li>
+<li>
+<p><a href="#%E8%A4%87%E6%95%B0%E3%81%AEslack%E3%83%AF%E3%83%BC%E3%82%AF%E3%82%B9%E3%83%9A%E3%83%BC%E3%82%B9%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E3%81%84%E3%82%8B%E5%A0%B4%E5%90%88%E3%81%AE%E3%81%8A%E3%82%B9%E3%82%B9%E3%83%A1">複数のSlackワークスペースを使っている場合のおススメ</a></p>
+</li>
+<li>
+<p><a href="#%E3%82%A2%E3%83%97%E3%83%AA%E5%B0%8E%E5%85%A5">アプリ導入</a></p>
+</li>
+<li>
+<p><a href="#%E6%8A%95%E7%A8%BF%E9%96%A2%E9%80%A3">投稿関連</a></p>
+</li>
+</ul>
+<h2 id="%E3%82%A4%E3%83%8E%E3%83%99%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%83%A9%E3%83%9C%E3%81%AEslack%E3%83%AF%E3%83%BC%E3%82%AF%E3%82%B9%E3%83%9A%E3%83%BC%E3%82%B9%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">イノベーションラボのSlackワークスペースについて</h2>
+<hr>
+<ul>
+<li>
+<h3 id="url">URL</h3>
+<p>このURLをブックマークしとくとよいです。</p>
+<p><a href="https://innovation-lab-mz3502.slack.com/" target="_blank">https://innovation-lab-mz3502.slack.com/</a></p>
+</li>
+<li>
+<h3 id="%E3%83%95%E3%83%AA%E3%83%BC%E3%83%97%E3%83%A9%E3%83%B3%E3%81%AE%E3%81%9F%E3%82%81%E8%8B%A5%E5%B9%B2%E3%81%AE%E5%88%B6%E9%99%90%E3%81%8C%E3%81%82%E3%82%8A%E3%81%BE%E3%81%99">フリープランのため、若干の制限があります</h3>
+<p>詳細はプラン比較をどうぞ。<br>
+<a href="https://slack.com/intl/ja-jp/pricing/paid-vs-free" target="_blank">Slack公式: SLACK 有料プラン VS フリープラン</a></p>
+<p>意識しておくのは2点。</p>
+<ol>
+<li>
+<p>参照できるメッセージは過去三か月分</p>
+<p>フリープランでは、過去90日間分以前のメッセージが参照できなくなります。<br>
+Slackに書き込まれるのは消えてなくなっていく<code>フロー情報</code>です。</p>
+<p>※ なので<code>ストック情報</code>化の方法検討を進めていきましょう！</p>
+<p>※ 2022.09のプラン改編で1万メッセージから過去90日間分に変更がありました。</p>
+</li>
+<li>
+<p>追加できるインテグレーション(Slackアプリ)は10個まで</p>
+<p>Slackワークスペースにアプリを入れて機能追加できます。<br>
+フリープランでは<strong>ワークスペース全体でアプリ10個まで</strong>となっているので、有効活用していきましょう。</p>
+<h5 id="%E3%83%81%E3%83%A3%E3%83%B3%E3%83%8D%E3%83%AB%E5%90%8D%E3%82%AF%E3%83%AA%E3%83%83%E3%82%AF%E3%81%A7%E5%87%BA%E3%81%A6%E3%81%8F%E3%82%8B%E3%83%A1%E3%83%8B%E3%83%A5%E3%83%BC%E3%81%8B%E3%82%89%E7%AE%A1%E7%90%86%E7%94%BB%E9%9D%A2%E3%81%B8%E8%A1%8C%E3%81%91%E3%81%BE%E3%81%99br%E4%BB%8A%E4%BD%95%E3%81%8C%E5%85%A5%E3%81%A3%E3%81%A6%E3%81%84%E3%82%8B%E3%81%8B%E8%A6%8B%E3%82%8B%E3%81%A8%E3%81%8D%E3%81%AB%E3%81%A9%E3%81%86%E3%81%9E">チャンネル名クリックで出てくるメニューから管理画面へ行けます。<br>今何が入っているか見るときにどうぞ</h5>
+<p><img src="img/10-01_showApps.png" alt=""></p>
+</li>
+</ol>
+</li>
+<li>
+<h3 id="%E3%83%81%E3%83%A3%E3%83%B3%E3%83%8D%E3%83%AB%E4%BD%9C%E6%88%90%E3%81%AF%E8%87%AA%E7%94%B1%E3%81%A7%E3%81%99">チャンネル作成は自由です</h3>
+<p>条件は、パブリックチャンネルであること だけです。<br>
+興味のある分野のチャンネル、ちょっとやってみたいワーキングのチャンネルなどなど。</p>
+<p>自分で作るのは...(気が引ける😢、めんどい👹)というメンバーは、<br>
+どんなチャンネルにするか考えたうえで、<code>z-相談-なんでも</code> チャンネルで一声どうぞ。</p>
+<ul>
+<li>
+<h4 id="%E6%B3%A8%E6%84%8F">注意</h4>
+<p>長期間投稿のないチャンネルはアーカイブする予定です。
+期間などの詳細は未定です。</p>
+</li>
+</ul>
+</li>
+<li>
+<h3 id="%E3%83%81%E3%83%A3%E3%83%B3%E3%83%8D%E3%83%AB%E3%81%AE%E5%91%BD%E5%90%8D%E8%A6%8F%E5%89%87">チャンネルの命名規則</h3>
+<p>チャンネルは自由に作成できますが、その際は以下の規則で命名をお願いします。</p>
+<pre class="hljs"><code><div>(プレフィックス)-(チャンネル分類)-(小分類)
+
+// 例
+  z-旅行先
+  z-旅行先-海外
+  z-おススメ-旅行先
+  tech-cloud-azure
+</div></code></pre>
+<ul>
+<li>
+<p>プレフィックス？？</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>all</td>
+<td>メンバー全員参加の初期チャンネルと情報共有の場</td>
+</tr>
+<tr>
+<td>tech</td>
+<td>最新情報共有や質問を行う技術コミュニティ</td>
+</tr>
+<tr>
+<td>tmp</td>
+<td>期限を決めて活動する暫定チャンネル。消し時を明示してね！</td>
+</tr>
+<tr>
+<td>wg</td>
+<td>テーマや目的をもって立ち上ったワーキングチーム</td>
+</tr>
+<tr>
+<td>z</td>
+<td>雑談チャンネル。なんでもいいよ！</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>チャンネル分類は自由にセンス良く付けてください。</p>
+</li>
+<li>
+<p>小分類はなくとも構いません。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="%E8%A4%87%E6%95%B0%E3%81%AEslack%E3%83%AF%E3%83%BC%E3%82%AF%E3%82%B9%E3%83%9A%E3%83%BC%E3%82%B9%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E3%81%84%E3%82%8B%E5%A0%B4%E5%90%88%E3%81%AE%E3%81%8A%E3%82%B9%E3%82%B9%E3%83%A1">複数のSlackワークスペースを使っている場合のおススメ</h2>
+<hr>
+<ul>
+<li>
+<h3 id="%E3%81%8A%E3%82%B9%E3%82%B9%E3%83%A1%E8%A8%AD%E5%AE%9A">おススメ設定</h3>
+<p>イノベーションラボ以外にも部課内や案件でSlackを利用していて、<br>区別がつかなくなる懸念がある場合、ワークスペースが識別できる<code>テーマ設定</code>を行うのが有用です。</p>
+<p><img src="img/03-02_selectTheme.png" alt="環境設定"><br>
+↑見間違えない様に変更しましょう</p>
+</li>
+</ul>
+<h2 id="%E3%82%A2%E3%83%97%E3%83%AA%E5%B0%8E%E5%85%A5">アプリ導入</h2>
+<hr>
+<ul>
+<li>
+<h3 id="slack%E3%81%AB%E3%81%AFweb%E3%83%87%E3%82%B9%E3%82%AF%E3%83%88%E3%83%83%E3%83%97%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB%E3%81%AE%E3%82%A2%E3%83%97%E3%83%AA%E3%81%8C%E3%81%82%E3%82%8A%E3%81%BE%E3%81%99">Slackには、Web/デスクトップ/モバイルのアプリがあります</h3>
+<p>ガイドではブラウザから見られるWebアプリをベースに案内しました。</p>
+<p>デスクトップ用、モバイル用アプリはSlack専用に作成されているだけの良さがあるため、是非導入を検討してみてください！<br>
+インストール方法は外部サイトが詳しいのでリンク先から！</p>
+<ul>
+<li>
+<p><a href="https://ascii.jp/elem/000/004/010/4010866/" target="_blank">Slackをモバイルアプリやデスクトップアプリから利用する</a></p>
+<ul>
+<li>基本はこのサイトで。</li>
+</ul>
+</li>
+<li>
+<p><a href="https://businesschatmaster.com/slack/sp_initial_app_slack" target="_blank">【iOS/Android版】Slackをスマホ(&amp;iPad)アプリで初回サインインする一連の流れ</a></p>
+<ul>
+<li>モバイルからのサインインはこっちにも。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="%E6%8A%95%E7%A8%BF%E9%96%A2%E9%80%A3">投稿関連</h2>
+<hr>
+<ul>
+<li>
+<h3 id="%E8%87%AA%E5%88%86%E3%81%B8%E3%81%AE%E6%8A%95%E7%A8%BF">自分への投稿</h3>
+<p>チャンネルへメッセージを投稿する間に、<strong>テスト投稿ができます</strong>。</p>
+<p>画面左部のユーザーリスト最上段の <code>(自分)</code> ユーザーは操作者自身です。<br>
+メッセージが実際にどのように表示されるかの確認や、思いついたメモ、<br>スマホ版Slackからデスクトップ版SlackへのURL共有など色々と利用できます。</p>
+<p><img src="img/10-02_postYourself.png" alt=""></p>
+</li>
+<li>
+<h3 id="%E3%83%AA%E3%82%A2%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3">リアクション</h3>
+<p>投稿されたメッセージにリアクションしましょう。</p>
+<p>Slackでリアクションといえばフツーは絵文字です。<br>
+他の人のメッセージにテキトーにバシバシつけてお気持ち表明しましょう。</p>
+<p><img src="img/10-03_reaction.gif" alt="テキトーにバシバシ"></p>
+<p>自分のメッセージ内でも使えます。<br>
+絵文字ピッカーに無いemojiでも、ウェブからコピペして表示できます。</p>
+<p><img src="img/10-04_reaction.gif" alt="自分のメッセージ"></p>
+</li>
+<li>
+<h3 id="%E8%BF%94%E4%BF%A1">返信</h3>
+<p>各チャンネルに投稿されたメッセージに返信できます。<br>
+返信するとスレッド化され、続きのやり取りができるようになります。</p>
+<p><img src="img/10-05_reply.gif" alt="返信しよう"></p>
+</li>
+<li>
+<h3 id="%E3%83%A1%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%B3">メンション</h3>
+<p>メッセージ自体に誰に向けたものなのかの印を含めることができます。<br>
+この機能をメンションといいます。</p>
+<ul>
+<li>
+<p><code>@</code>表示名</p>
+<p>特定の人向け。複数人宛なら複数個を続けて入力する。</p>
+</li>
+<li>
+<p><code>@channel</code></p>
+<p>そのチャンネル内の全員向け</p>
+</li>
+<li>
+<p><code>@here</code></p>
+<p>チャンネル内でその時点の🟢アクティブメンバー向け</p>
+</li>
+</ul>
+<p>詳しい使い方は <a href="https://slack.com/intl/ja-jp/help/articles/205240127-Slack-%E3%81%A7%E3%83%A1%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%92%E4%BD%BF%E7%94%A8%E3%81%99%E3%82%8B#%E3%83%81%E3%83%A3%E3%83%B3%E3%83%8D%E3%83%AB-1" target="_blank">Slack公式: Slack でメンションを使用する</a> を一読ください。<br>
+@here, @channel, @everyoneは <a href="https://slack.com/intl/ja-jp/help/articles/202009646-%E3%83%81%E3%83%A3%E3%83%B3%E3%83%8D%E3%83%AB%E3%82%84%E3%83%AF%E3%83%BC%E3%82%AF%E3%82%B9%E3%83%9A%E3%83%BC%E3%82%B9%E3%81%AB%E9%80%9A%E7%9F%A5%E3%81%99%E3%82%8B" target="_blank">Slack公式: チャンネルやワークスペースに通知する</a> で。</p>
+</li>
+</ul>
+<h2 id="%E4%BB%A5%E4%B8%8A">以上</h2>
+<hr>
+<ul>
+<li>2022/07/13
+<ul>
+<li>新規作成</li>
+</ul>
+</li>
+</ul>
+
+</body>
+</html>
